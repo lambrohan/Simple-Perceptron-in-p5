@@ -2,6 +2,7 @@ class Perceptron {
 
     constructor(){
         this.weights = [random(-1,1),random(-1,1)];
+        this.lr = 0.1;
 
     }
     // Guess the approximate values and process through act function 
@@ -22,7 +23,7 @@ class Perceptron {
 
         // tweaking weights according to error
         for (let i = 0; i < this.weights.length; i++) {
-            
+            this.weights[i] = error * inputs[i] * this.lr;
             
         }
     }

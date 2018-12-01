@@ -15,9 +15,16 @@ function setup(){
 }
 
 function draw(){
-trainingPoints.forEach((point)=>{
-    point.show();
-})
+    trainingPoints.forEach((point)=>{
+        point.show();
+    })
+    stroke(255);
+    line (0,0,height,width);
+    
 
+}
+
+function mouseClick(){
+    alert('clicked');
 }
 
