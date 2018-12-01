@@ -17,6 +17,18 @@ function setup(){
 function draw(){
     trainingPoints.forEach((point)=>{
         point.show();
+
+        var inputs = [point.x,point.y];
+        var desiredVal = point.label;
+        var approxVal = perceptron.guess(inputs);
+
+
+        if (approxVal==desiredVal) {
+            stroke (0,255,0);
+        }else{
+            stroke(255,0,0);
+        }
+        ellipse(point.x,point.y,8,8);
     })
     stroke(255);
     line (0,0,height,width);
@@ -24,7 +36,9 @@ function draw(){
 
 }
 
-function mouseClick(){
-    alert('clicked');
+function mouseClicked(){
+    trainingPoints.forEach((point)=>{
+        perceptron.train([point.x,point.y],point.label);
+    })
 }
 
