@@ -1,5 +1,6 @@
 var perceptron;
 var trainingPoints = [];
+var showError = 0;
 
 function setup(){
     createCanvas(600,600);
@@ -21,9 +22,10 @@ function draw(){
         var inputs = [point.x,point.y];
         var desiredVal = point.label;
         var approxVal = perceptron.guess(inputs);
+        showError = desiredVal-approxVal;
 
 
-        if (approxVal==desiredVal) {
+        if (desiredVal-approxVal==0) {
             stroke (0,255,0);
         }else{
             stroke(255,0,0);
@@ -40,5 +42,8 @@ function mouseClicked(){
     trainingPoints.forEach((point)=>{
         perceptron.train([point.x,point.y],point.label);
     })
+
+    console.log('err',showError);
+    
 }
 
