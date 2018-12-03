@@ -1,8 +1,17 @@
 class Point {
     constructor(){
-        this.x = random(width);
-        this.y = random(height);
+        this.x = random(-1,1);
+        this.y = random(-1,1);
         this.label = this.x>this.y ? 1 : -1;
+    }
+
+
+    getPx(){
+        return  map(this.x,-1,1,0,width);
+    }
+
+    getPy(){
+        return  map(this.y,-1,1,height,0);
     }
 
 
@@ -14,6 +23,6 @@ class Point {
             fill (0);
         }
 
-        ellipse(this.x,this.y,16,16);
+        ellipse(this.getPx(),this.getPy(),16,16);
     }
 }

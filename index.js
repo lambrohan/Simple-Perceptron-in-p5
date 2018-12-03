@@ -1,6 +1,7 @@
 var perceptron;
 var trainingPoints = [];
 var showError = 0;
+var trainingIndex = 0;
 
 function setup(){
     createCanvas(600,600);
@@ -26,21 +27,28 @@ function draw(){
 
 
         if (desiredVal-approxVal==0) {
-            stroke (0,255,0);
+            fill (0,255,0);
         }else{
-            stroke(255,0,0);
+            fill(255,0,0);
         }
-        ellipse(point.x,point.y,8,8);
+        ellipse(point.getPx(),point.getPy(),8,8);
     })
     stroke(255);
-    line (0,0,height,width);
+    line (0,height,width,0);
+
+    var trainingPoint = trainingPoints[trainingIndex];
+    perceptron.train([trainingPoint.x,trainingPoint.y],trainingPoint.label);
+    trainingIndex++;
+    if(trainingIndex==trainingPoints.length){
+        trainingIndex=0;
+    }
     
 
 }
 
 function mouseClicked(){
     trainingPoints.forEach((point)=>{
-        perceptron.train([point.x,point.y],point.label);
+       
     })
 
     console.log('err',showError);
